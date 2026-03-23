@@ -22,6 +22,20 @@ public class Main {
         movie.duration = 110;           // 1h 50m
         movie.rating = 4.5;
 
+        // Casting de datos
+        long durationLong = movie.duration;                     // Casting implícito: Ambos son de tipo int, y permite el casting implícito, básicamente por que long es un tipo de dato mas grande que int
+        int rating = (int) movie.rating;                        // Casting explícito: Convertir un tipo int grande a uno más pequeño, en este caso con la perdida de decimales
+        long prizes = Long.parseLong( "25" );                // Casting explícito: Usando una clase, para convertir un String en un Long
+        int number = (int) Double.parseDouble( "3.1415" );   // Casting explícito: Usando una clase, para convertir un String en un Double
+
+        System.out.println(
+                "Casting de tipos" +
+                "\n >> durationLong: " + durationLong +
+                "\n >> rating: " + rating +
+                "\n >> prizes: " + prizes +
+                "\n >> number: " + number
+        );
+
         // Creamos un usuario
         User user = new User();
         user.name = "Juan C";
