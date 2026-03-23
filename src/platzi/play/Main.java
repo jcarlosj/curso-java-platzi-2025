@@ -1,6 +1,7 @@
 package platzi.play;
 
 import platzi.play.contenido.Movie;
+import platzi.play.plataforma.User;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +18,13 @@ public class Main {
         movie.duration = 110;           // 1h 50m
         movie.rating = 4.5;
 
-        // Obtenemos información detallada de la película
-        System.out.println( movie.getInfo() );
+        // Creamos un usuario
+        User user = new User();
+        user.name = "Juan C";
+        user.email = "jcarlosj.dev@gmail.com";
+        user.password = "123456789";
+
+        // Obtenemos información sobre la película que ve el usuario
+        user.watch( movie );
     }
 }
