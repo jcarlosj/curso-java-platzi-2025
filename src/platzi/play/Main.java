@@ -1,22 +1,23 @@
 package platzi.play;
 
-import java.util.Scanner;
+import platzi.play.contenido.Movie;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Platzi Play!");
 
-        // Observando por las entradas en la consola
-        Scanner scan = new Scanner(System.in);
+        // Creamos una película
+        Movie movie = new Movie();      // Instanciar un objeto a partir de una clase
 
-        // Capturamos la siguiente línea en la consola
-        System.out.println("¿Cuál es tú nombre? ");
-        String name = scan.nextLine();
+        // Agregamos valores a los atributos del objeto movie
+        movie.title = "León: The Professional";
+        movie.year = 1994;
+        movie.genre = "Acción";
+        movie.director = "Luc Besson";
+        movie.duration = 110;           // 1h 50m
+        movie.rating = 4.5;
 
-        // Capturamos la siguiente línea en la consola
-        System.out.println("¿Cuál es tu edad? ");
-        int edad = scan.nextInt();
-
-        System.out.println("Bienvenido " + name + " a Platzi Play! \nPuedes ver contenido +" + edad);
+        // Obtenemos información detallada de la película
+        System.out.println( movie.getInfo() );
     }
 }
