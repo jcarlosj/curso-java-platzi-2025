@@ -2,6 +2,7 @@ package platzi.play;
 
 import platzi.play.contenido.Movie;
 import platzi.play.plataforma.User;
+import platzi.play.utils.ScannerUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,13 +15,13 @@ public class Main {
         Movie movie = new Movie();      // Instanciar un objeto a partir de una clase
 
         // Agregamos valores a los atributos del objeto movie
-        movie.title = "León: The Professional";
+        movie.title = ScannerUtils.inputText("Nombre película" );                   // "León: The Professional"
         movie.releaseDate = LocalDate.of(1994, 9, 14);
-        movie.releaseLocation = "Francia";
-        movie.genre = "Acción";
-        movie.director = "Luc Besson";
-        movie.duration = 110;           // 1h 50m
-        movie.rating = 4.5;
+        movie.releaseLocation = ScannerUtils.inputText("Lugar de estreno");         // "Francia"
+        movie.genre = ScannerUtils.inputText( "Genero de la película" );            // "Acción"
+        movie.director = ScannerUtils.inputText( "Nombre del director" );           // "Luc Besson"
+        movie.duration = ScannerUtils.inputInt( "Duración de la película" );        // 110, 1h 50m
+        movie.rating = ScannerUtils.inputDouble( "Calificación de la película" );   // 4.5;
 
         // Casting de datos
         long durationLong = movie.duration;                     // Casting implícito: Ambos son de tipo int, y permite el casting implícito, básicamente por que long es un tipo de dato mas grande que int
