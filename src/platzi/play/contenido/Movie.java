@@ -1,11 +1,15 @@
 package platzi.play.contenido;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Movie {
     // Atributos
     public String title;
     public int year;
+    public LocalDate releaseDate;
+    public String releaseLocation;
     public String director;
     public String genre;
     public int duration;
@@ -19,9 +23,11 @@ public class Movie {
 
     public String getInfo() {
         return title +
-                ", (" + year + ") \n Director: " + director +
+                ", (" + releaseDate.getYear() + ") \n Director: " + director +
                 "\n Género: " + genre +
                 "\n Duración: " + duration +
+                "\n Fecha de lanzamiento: " + releaseDate.toString() +
+                "\n Lugar de lanzamiento: " + releaseLocation +
                 "\n Disponible: " + isAvailable +
                 "\n Calificación: " + rating + "/5.0 " +
                 "\n " + ( isPopular() ? "Es popular" : "No es popular" ) ;
