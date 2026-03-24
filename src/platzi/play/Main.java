@@ -8,8 +8,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Main {
+    // Define una constante: El valor nunca cambia, se comparte con todas las instancias
+    public static final String VERSION = "1.0.0";
+    public static final String APP_NAME = "Platzi Play!";
+
     public static void main(String[] args) {
-        System.out.println("Platzi Play!");
+        System.out.println( APP_NAME + " v" + VERSION );
 
         // Creamos una película
         Movie movie = new Movie();      // Instanciar un objeto a partir de una clase
