@@ -29,8 +29,18 @@ public class Movie {
         this.isAvailable = true;
     }
 
+    public Movie(
+            String title,
+            int duration,
+            String genre,
+            double rating
+    ) {
+        this( title, duration, genre ); // Invocar el constructor que espere esos parámetros, en su respectivo orden y tipo
+        this.rate( rating );            // Invocar a métodos de la clase
+    }
+
     // Métodos
-    public void reproducir(){
+    public void reproducir() {
         System.out.println( title + " se está reproduciendo... ");
     }
 

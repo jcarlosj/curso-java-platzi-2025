@@ -19,9 +19,10 @@ public class Main {
         String title = ScannerUtils.inputText( "Nombre película" );
         String genre = ScannerUtils.inputText( "Genero de la película" );
         int duration = ScannerUtils.inputInt( "Duración de la película" );
+        double rating = ScannerUtils.inputDouble( "Calificación de la película" );
 
         // Creamos una película
-        Movie movie = new Movie( title, duration, genre );      // Instanciar un objeto a partir de una clase
+        Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
 
         // Agregamos valores a los atributos del objeto movie
 //        movie.title = ScannerUtils.inputText("Nombre película" );                   // "León: The Professional"
