@@ -23,6 +23,8 @@ public class Main {
 
         // Creamos una película
         Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
+//        movie.rating = 999;       // Esto se saltará la validación que hemos realizado, con el método rate(), pues estamos cambiando su valor directamente al atributo rating
+        movie.setRating( 999 );     // Esta seria la forma de modificar un valor usando un Setter y no se saltará la validación que hemos realizado, con el método rate()
 
         // Agregamos valores a los atributos del objeto movie
 //        movie.title = ScannerUtils.inputText("Nombre película" );                   // "León: The Professional"

@@ -20,7 +20,7 @@ public class User {
 
     // Métodos
     public void watch( Movie movie ){
-        System.out.println( name + " esta viendo >>> " + movie.title );
+        System.out.println( name + " esta viendo >>> " + movie.getTitle() );
     }
 
     public String getInfo() {

@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 public class Movie {
     // Atributos
-    public String title;
-    public int year;
-    public LocalDate releaseDate;
-    public String releaseLocation;
-    public String director;
-    public String genre;
-    public int duration;
-    public double rating;
-    public boolean isAvailable;
+    private String title;
+    private int year;
+    private LocalDate releaseDate;
+    private String releaseLocation;
+    private String director;
+    private String genre;
+    private int duration;
+    private double rating;
+    private boolean isAvailable;
 
     // Constructor
     public Movie (
@@ -65,4 +65,79 @@ public class Movie {
     public boolean isPopular(){
         return rating >= 4;
     }
+
+    // Getters
+    public String getTitle() {
+        return title;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public String getReleaseLocation() {
+        return releaseLocation;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    // Setters
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setReleaseLocation(String releaseLocation) {
+        this.releaseLocation = releaseLocation;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setRating(double rating) {
+        this.rate(rating);
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
 }

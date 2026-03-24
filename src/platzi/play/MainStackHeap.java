@@ -7,14 +7,14 @@ public class MainStackHeap {
         Movie lionKing = new Movie( "El Rey Leon", 135, "Animada" );
         Movie harryPotter = new Movie( "Harry Potter", 200, "Fantasia" );
 
-        System.out.println( lionKing + " -> " + lionKing.title );
-        System.out.println( harryPotter + " -> " + harryPotter.title );
+        System.out.println( lionKing + " -> " + lionKing.getTitle() );
+        System.out.println( harryPotter + " -> " + harryPotter.getTitle() );
 
         lionKing = harryPotter;             // lionKing apunte a donde se encuentra harryPotter en la memoria HEAP, en este momento los valores de harryPotter ya no son accesibles, va a ser eliminado por el Garbage Collector
-        lionKing.title = "El Hobbit";       // Le cambiamos el valor del titulo
+        lionKing.setTitle( "El Hobbit" );   // Le cambiamos el valor del titulo
 
         // Como ambas estan apuntando a la misma, las dos muestran el mismo valor
-        System.out.println( lionKing + " -> " + lionKing.title );
-        System.out.println( harryPotter + " -> " + harryPotter.title );
+        System.out.println( lionKing + " -> " + lionKing.getTitle() );
+        System.out.println( harryPotter + " -> " + harryPotter.getTitle() );
     }
 }
