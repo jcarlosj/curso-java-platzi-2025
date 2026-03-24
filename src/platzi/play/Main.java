@@ -48,11 +48,11 @@ public class Main {
 //        );
 
         // Creamos un usuario
-        User user = new User();
-        user.name = "Juan C";
-        user.email = "jcarlosj.dev@gmail.com";
-        user.password = "123456789";
-        user.createdAt = LocalDateTime.now();
+        User user = new User( "Juan C", "jcarlosj.dev@gmail.com" );
+//        user.name = "Juan C";
+//        user.email = "jcarlosj.dev@gmail.com";
+//        user.password = "123456789";
+//        user.createdAt = LocalDateTime.now();
 
         // Obtener información detallada del usuario
         System.out.println( user.getInfo() );
