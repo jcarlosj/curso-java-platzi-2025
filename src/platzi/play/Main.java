@@ -1,11 +1,9 @@
 package platzi.play;
 
 import platzi.play.contenido.Movie;
+import platzi.play.plataforma.Platform;
 import platzi.play.plataforma.User;
 import platzi.play.utils.ScannerUtils;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Main {
     // Define una constante: El valor nunca cambia, se comparte con todas las instancias
@@ -14,6 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println( APP_NAME + " v" + VERSION );
+
+        // Creamos una nueva Plataforma
+        Platform platform = new Platform( APP_NAME );
 
         // Capturamos los valores que deseamos asignar a la creación de la película
         String title = ScannerUtils.inputText( "Nombre película" );
@@ -25,6 +26,23 @@ public class Main {
         Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
 //        movie.rating = 999;       // Esto se saltará la validación que hemos realizado, con el método rate(), pues estamos cambiando su valor directamente al atributo rating
         movie.setRating( 999 );     // Esta seria la forma de modificar un valor usando un Setter y no se saltará la validación que hemos realizado, con el método rate()
+
+        // Creamos una segunda película con valores predeterminados
+        Movie f1 = new Movie( "F1: The movie", 120, "Action" );
+
+        // Agregar la película a la lista de plataforma
+        platform.add( movie );
+        platform.add( f1 );
+
+        System.out.println( platform );
+        System.out.println("# películas en " + platform.getName() + " es de " + platform.getContent().size() + " películas");
+        platform.showTitles();
+
+        // Eliminar la pelicula f1
+        System.out.println( "Elimina F1");
+        platform.delete( f1 );
+        System.out.println("# películas en " + platform.getName() + " es de " + platform.getContent().size() + " películas");
+        platform.showTitles();
 
         // Agregamos valores a los atributos del objeto movie
 //        movie.title = ScannerUtils.inputText("Nombre película" );                   // "León: The Professional"
