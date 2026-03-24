@@ -16,6 +16,19 @@ public class Movie {
     public double rating;
     public boolean isAvailable;
 
+    // Constructor
+    public Movie (
+            String title,
+            int duration,
+            String genre
+    ) {
+        this.title = title;
+        this.genre = genre;
+        this.duration = duration;
+        this.releaseDate = LocalDate.now();
+        this.isAvailable = true;
+    }
+
     // Métodos
     public void reproducir(){
         System.out.println( title + " se está reproduciendo... ");
