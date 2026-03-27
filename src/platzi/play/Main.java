@@ -10,39 +10,132 @@ public class Main {
     public static final String VERSION = "1.0.0";
     public static final String APP_NAME = "Platzi Play!";
 
+    public static final int ADD = 1;
+    public static final int SHOW = 2;
+    public static final int SEARCH_BY_TITLE = 3;
+    public static final int REMOVE = 4;
+    public static final int EXIT = 5;
+
     public static void main(String[] args) {
         System.out.println( APP_NAME + " v" + VERSION );
 
         // Creamos una nueva Plataforma
         Platform platform = new Platform( APP_NAME );
 
+        // Menu interactivo usando un while
+        while( true ) {
+            int option = ScannerUtils.inputInt("""
+                    Menu de navegación:
+                    1. Agregar contenido
+                    2. Mostrar todo
+                    3. Buscar por titulo
+                    4. Eliminar contenido
+                    5. Salir
+                    Ingresa una de las opciones:
+                    """);
+            System.out.println("Opcion elegida: " + option);
+
+            // Usando if-else
+//            if( option == ADD) {
+//                // Capturamos los valores que deseamos asignar a la creación de la película
+//                String title = ScannerUtils.inputText( "Nombre película" );
+//                String genre = ScannerUtils.inputText( "Genero de la película" );
+//                int duration = ScannerUtils.inputInt( "Duración de la película" );
+//                double rating = ScannerUtils.inputDouble( "Calificación de la película" );
+//
+//                // Creamos una película
+//                Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
+//
+//                // Creamos una segunda película con valores predeterminados
+//                Movie f1 = new Movie( "F1: The movie", 120, "Action" );
+//
+//                // Agregar la película a la lista de plataforma
+//                platform.add( movie );
+//                platform.add( f1 );
+//            }
+//            else if( option == SHOW ) {
+//                platform.showTitles();
+//            }
+//            else if( option == SEARCH_BY_TITLE ) {
+//                System.out.println("Busca por titulo");
+//            }
+//            else if( option == REMOVE ) {
+//                System.out.println("Elimina el contenido");
+//            }
+//            if( option == EXIT ) {
+//                System.exit( 0 );
+//            }
+//        }
+
+        // Usando switch
+        switch( option ) {
+            case ADD -> {
+                // Capturamos los valores que deseamos asignar a la creación de la película
+                String title = ScannerUtils.inputText( "Nombre película" );
+                String genre = ScannerUtils.inputText( "Genero de la película" );
+                int duration = ScannerUtils.inputInt( "Duración de la película" );
+                double rating = ScannerUtils.inputDouble( "Calificación de la película" );
+
+                // Creamos una película
+                Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
+
+                // Creamos una segunda película con valores predeterminados
+                Movie f1 = new Movie( "F1: The movie", 120, "Action" );
+
+                // Agregar la película a la lista de plataforma
+                platform.add( movie );
+                platform.add( f1 );
+
+                break;
+            }
+            case SHOW -> {
+                platform.showTitles();
+                break;
+            }
+            case SEARCH_BY_TITLE -> {
+                System.out.println("Busca por titulo");
+                break;
+            }
+            case REMOVE -> {
+                System.out.println("Elimina el contenido");
+                break;
+            }
+            case EXIT -> {
+                System.exit( 0 );
+                break;
+            }
+            default -> {
+                break;
+            }
+        }
+
         // Capturamos los valores que deseamos asignar a la creación de la película
-        String title = ScannerUtils.inputText( "Nombre película" );
-        String genre = ScannerUtils.inputText( "Genero de la película" );
-        int duration = ScannerUtils.inputInt( "Duración de la película" );
-        double rating = ScannerUtils.inputDouble( "Calificación de la película" );
+//        String title = ScannerUtils.inputText( "Nombre película" );
+//        String genre = ScannerUtils.inputText( "Genero de la película" );
+//        int duration = ScannerUtils.inputInt( "Duración de la película" );
+//        double rating = ScannerUtils.inputDouble( "Calificación de la película" );
 
         // Creamos una película
-        Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
+//        Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
 //        movie.rating = 999;       // Esto se saltará la validación que hemos realizado, con el método rate(), pues estamos cambiando su valor directamente al atributo rating
-        movie.setRating( 999 );     // Esta seria la forma de modificar un valor usando un Setter y no se saltará la validación que hemos realizado, con el método rate()
+//        movie.setRating( 999 );     // Esta seria la forma de modificar un valor usando un Setter y no se saltará la validación que hemos realizado, con el método rate()
 
         // Creamos una segunda película con valores predeterminados
-        Movie f1 = new Movie( "F1: The movie", 120, "Action" );
+//        Movie f1 = new Movie( "F1: The movie", 120, "Action" );
 
         // Agregar la película a la lista de plataforma
-        platform.add( movie );
-        platform.add( f1 );
-
-        System.out.println( platform );
-        System.out.println("# películas en " + platform.getName() + " es de " + platform.getContent().size() + " películas");
-        platform.showTitles();
+//        platform.add( movie );
+//        platform.add( f1 );
+//
+//        System.out.println( platform );
+//        System.out.println("# películas en " + platform.getName() + " es de " + platform.getContent().size() + " películas");
+//        platform.showTitles();
 
         // Eliminar la pelicula f1
-        System.out.println( "Elimina F1");
-        platform.delete( f1 );
-        System.out.println("# películas en " + platform.getName() + " es de " + platform.getContent().size() + " películas");
-        platform.showTitles();
+//        System.out.println( "Elimina F1");
+//        platform.delete( f1 );
+//        System.out.println("# películas en " + platform.getName() + " es de " + platform.getContent().size() + " películas");
+//        platform.showTitles();
 
         // Agregamos valores a los atributos del objeto movie
 //        movie.title = ScannerUtils.inputText("Nombre película" );                   // "León: The Professional"
@@ -68,19 +161,21 @@ public class Main {
 //        );
 
         // Creamos un usuario
-        User user = new User( "Juan C", "jcarlosj.dev@gmail.com" );
+//        User user = new User( "Juan C", "jcarlosj.dev@gmail.com" );
 //        user.name = "Juan C";
 //        user.email = "jcarlosj.dev@gmail.com";
 //        user.password = "123456789";
 //        user.createdAt = LocalDateTime.now();
 
         // Obtener información detallada del usuario
-        System.out.println( user.getInfo() );
+//        System.out.println( user.getInfo() );
 
         // Obtenemos información sobre la película que ve el usuario
-        user.watch( movie );
+//        user.watch( movie );
 
         // Obtener información de la ficha técnica de la película
-        System.out.println( movie.getInfo() );
+//        System.out.println( movie.getInfo() );
+
+        }
     }
 }

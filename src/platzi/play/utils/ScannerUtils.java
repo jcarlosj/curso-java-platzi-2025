@@ -14,6 +14,13 @@ public class ScannerUtils {
 
     public static int inputInt( String label ) {
         System.out.println( label + ": ");
+
+        // Validamos si el valor no es un Entero
+        while( !SCANNER.hasNextInt() ) {
+            System.out.println( "Valor invalido, debe ingresar numero entero para continuar" );
+            SCANNER.next();         // Descargamos la entrada de datos, vamos a la siguiente entrada
+        }
+
         int value = SCANNER.nextInt();
         SCANNER.nextLine();
 
@@ -22,6 +29,13 @@ public class ScannerUtils {
 
     public static double inputDouble( String label ) {
         System.out.println( label + ": ");
+
+        // Validamos si el valor no es un Entero
+        while( !SCANNER.hasNextDouble() ) {
+            System.out.println( "Valor invalido, debe ingresar numero decimal para continuar" );
+            SCANNER.next();         // Descargamos la entrada de datos, vamos a la siguiente entrada
+        }
+
         double value = SCANNER.nextDouble();
         SCANNER.nextLine();
 
