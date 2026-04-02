@@ -4,6 +4,8 @@ import platzi.play.contenido.Movie;
 import platzi.play.plataforma.Platform;
 import platzi.play.utils.ScannerUtils;
 
+import java.util.List;
+
 public class Main {
     // Define una constante: El valor nunca cambia, se comparte con todas las instancias
     public static final String VERSION = "1.0.0";
@@ -12,8 +14,9 @@ public class Main {
     public static final int ADD = 1;
     public static final int SHOW = 2;
     public static final int SEARCH_BY_TITLE = 3;
-    public static final int REMOVE = 4;
-    public static final int EXIT = 5;
+    public static final int SEARCH_BY_GENRE = 4;
+    public static final int REMOVE = 5;
+    public static final int EXIT = 6;
 
     public static void main(String[] args) {
         System.out.println( APP_NAME + " v" + VERSION );
@@ -31,8 +34,9 @@ public class Main {
                     1. Agregar contenido
                     2. Mostrar todo
                     3. Buscar por titulo
-                    4. Eliminar contenido
-                    5. Salir
+                    4. Buscar por genero
+                    5. Eliminar contenido
+                    6. Salir
                     Ingresa una de las opciones:
                     """);
             System.out.println("Opcion elegida: " + option);
@@ -66,6 +70,8 @@ public class Main {
                     String term = ScannerUtils.inputText( "Buscar por titulo: " );
                     Movie movie = platform.searchByTitle( term );
 
+                    System.out.println( "*** Resultados de búsqueda por titulo ***" );
+
                     if( movie != null ) {
                         System.out.println( movie.getInfo() );
                     }
@@ -74,6 +80,16 @@ public class Main {
                     }
 
                     break;
+                }
+                case SEARCH_BY_GENRE -> {
+                    String term = ScannerUtils.inputText( "Buscar por genero: " );
+
+                    System.out.println( "*** Resultados de búsqueda por genero ***" );
+
+                    List<Movie> movies = platform.searchByGenre( term );
+                    System.out.println( "Se han encontrado " + movies.size() + " en " + APP_NAME );
+
+                    movies.forEach( movie -> System.out.println( movie.getInfo() + "\n" ));
                 }
                 case REMOVE -> {
                     String term = ScannerUtils.inputText( "Titulo a eliminar: " );
@@ -102,15 +118,15 @@ public class Main {
     }
 
     private static void addMovies( Platform platform ) {
-        platform.add( new Movie( "The Odyssey", 150, "Fiction/Drama" ) );
-        platform.add( new Movie( "Avengers: Doomsday", 160, "Action/Superheroes" ) );
-        platform.add( new Movie( "Toy Story", 100, "Animation/Adventure" ) );
+        platform.add( new Movie( "The Odyssey", 150, "Fiction" ) );
+        platform.add( new Movie( "Avengers: Doomsday", 160, "Action" ) );
+        platform.add( new Movie( "Toy Story", 100, "Animation" ) );
         platform.add( new Movie( "Mickey 17", 219, "Fiction" ) );
-        platform.add( new Movie( "Sinners", 215, "Terror/Drama" ) );
-        platform.add( new Movie( "How to Train your Dragon", 125, "Fantasy/Adventure" ) );
-        platform.add( new Movie( "Inside Out 2", 136, "Animation/Comedy" ) );
-        platform.add( new Movie( "Gladiator 2", 228, "Action/Drama" ) );
-        platform.add( new Movie( "Deadpool & Wolverine", 208, "Action/Comedy" ) );
+        platform.add( new Movie( "Sinners", 215, "Terror" ) );
+        platform.add( new Movie( "How to Train your Dragon", 125, "Fantasy" ) );
+        platform.add( new Movie( "Inside Out 2", 136, "Animation" ) );
+        platform.add( new Movie( "Gladiator 2", 228, "Action" ) );
+        platform.add( new Movie( "Deadpool & Wolverine", 208, "Action" ) );
         platform.add( new Movie( "Oppenheimer", 301, "Drama" ) );
     }
 }

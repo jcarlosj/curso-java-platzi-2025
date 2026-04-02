@@ -21,9 +21,14 @@ public class Platform {
 
     public void showTitles() {
         System.out.println( "Listado títulos" );
-        for (int i = 0; i < content.size(); i++) {
+        /*for (int i = 0; i < content.size(); i++) {
             System.out.println( i + 1 +". " + content.get( i ).getTitle() );
-        }
+        }*/
+
+        // Programación Funcional
+        content.forEach( movie -> {
+            System.out.println( " - " + movie.getTitle() );
+        });
     }
 
     public void delete( Movie movie ) {
@@ -40,11 +45,23 @@ public class Platform {
     }
 
     public Movie searchByTitle( String term ) {
-        for ( Movie movie : content ) {
+        /*for ( Movie movie : content ) {
             if ( movie.getTitle().equalsIgnoreCase( term ) ) {
                 return movie;
             }
-        }
-        return null;
+        }*/
+        // stream: Permite realizar acciones (filtros, condiciones, etc), sobre los elementos de una lista de forma fluida, ordenada y moderna
+        return content.stream()                                                         // Crea el Stream a partir de un List
+                .filter( movie -> movie.getTitle().equalsIgnoreCase( term ) )     // Itera y aplica un filtro
+                .findFirst()                                                            // Toma solo el primer valor que entrega el filtro
+                .orElse( null );                                                  // Si no encuentra nada retorna null
+
+        // return null;
+    }
+
+    public List<Movie> searchByGenre( String genre ) {
+        return content.stream()                                                           // Crea el Stream a partir de un List
+                .filter( movie -> movie.getGenre().equalsIgnoreCase( genre ) )      // Itera y aplica un filtro
+                .toList();                                                                 // Convierte los resultados del filtro como una lista
     }
 }
