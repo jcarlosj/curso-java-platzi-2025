@@ -38,4 +38,13 @@ public class Platform {
     public List<Movie> getContent() {
         return content;
     }
+
+    public Movie searchByTitle( String term ) {
+        for ( Movie movie : content ) {
+            if ( movie.getTitle().equalsIgnoreCase( term ) ) {
+                return movie;
+            }
+        }
+        return null;
+    }
 }

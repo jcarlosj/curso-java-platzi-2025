@@ -2,7 +2,6 @@ package platzi.play;
 
 import platzi.play.contenido.Movie;
 import platzi.play.plataforma.Platform;
-import platzi.play.plataforma.User;
 import platzi.play.utils.ScannerUtils;
 
 public class Main {
@@ -22,6 +21,9 @@ public class Main {
         // Creamos una nueva Plataforma
         Platform platform = new Platform( APP_NAME );
 
+        // Cargar películas
+        addMovies( platform );
+
         // Menu interactivo usando un while
         while( true ) {
             int option = ScannerUtils.inputInt("""
@@ -35,147 +37,80 @@ public class Main {
                     """);
             System.out.println("Opcion elegida: " + option);
 
-            // Usando if-else
-//            if( option == ADD) {
-//                // Capturamos los valores que deseamos asignar a la creación de la película
-//                String title = ScannerUtils.inputText( "Nombre película" );
-//                String genre = ScannerUtils.inputText( "Genero de la película" );
-//                int duration = ScannerUtils.inputInt( "Duración de la película" );
-//                double rating = ScannerUtils.inputDouble( "Calificación de la película" );
-//
-//                // Creamos una película
-//                Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
-//
-//                // Creamos una segunda película con valores predeterminados
-//                Movie f1 = new Movie( "F1: The movie", 120, "Action" );
-//
-//                // Agregar la película a la lista de plataforma
-//                platform.add( movie );
-//                platform.add( f1 );
-//            }
-//            else if( option == SHOW ) {
-//                platform.showTitles();
-//            }
-//            else if( option == SEARCH_BY_TITLE ) {
-//                System.out.println("Busca por titulo");
-//            }
-//            else if( option == REMOVE ) {
-//                System.out.println("Elimina el contenido");
-//            }
-//            if( option == EXIT ) {
-//                System.exit( 0 );
-//            }
-//        }
+            // Usando switch
+            switch( option ) {
+                case ADD -> {
+                    // Capturamos los valores que deseamos asignar a la creación de la película
+                    String title = ScannerUtils.inputText( "Nombre película" );
+                    String genre = ScannerUtils.inputText( "Genero de la película" );
+                    int duration = ScannerUtils.inputInt( "Duración de la película" );
+                    double rating = ScannerUtils.inputDouble( "Calificación de la película" );
 
-        // Usando switch
-        switch( option ) {
-            case ADD -> {
-                // Capturamos los valores que deseamos asignar a la creación de la película
-                String title = ScannerUtils.inputText( "Nombre película" );
-                String genre = ScannerUtils.inputText( "Genero de la película" );
-                int duration = ScannerUtils.inputInt( "Duración de la película" );
-                double rating = ScannerUtils.inputDouble( "Calificación de la película" );
+                    // Creamos una película
+                    Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
 
-                // Creamos una película
-                Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
+                    // Creamos una segunda película con valores predeterminados
+                    Movie f1 = new Movie( "F1: The movie", 120, "Action" );
 
-                // Creamos una segunda película con valores predeterminados
-                Movie f1 = new Movie( "F1: The movie", 120, "Action" );
+                    // Agregar la película a la lista de plataforma
+                    platform.add( movie );
+                    platform.add( f1 );
 
-                // Agregar la película a la lista de plataforma
-                platform.add( movie );
-                platform.add( f1 );
+                    break;
+                }
+                case SHOW -> {
+                    platform.showTitles();
+                    break;
+                }
+                case SEARCH_BY_TITLE -> {
+                    String term = ScannerUtils.inputText( "Buscar por titulo: " );
+                    Movie movie = platform.searchByTitle( term );
 
-                break;
+                    if( movie != null ) {
+                        System.out.println( movie.getInfo() );
+                    }
+                    else {
+                        System.out.println( term + " no existe en " + APP_NAME );
+                    }
+
+                    break;
+                }
+                case REMOVE -> {
+                    String term = ScannerUtils.inputText( "Titulo a eliminar: " );
+                    Movie title = platform.searchByTitle( term );
+
+                    if( title != null ) {
+                        platform.delete( title );
+                        System.out.println( term + " eliminado en " + APP_NAME  );
+                    }
+                    else {
+                        System.out.println( term + " no existe en " + APP_NAME );
+                    }
+
+                    break;
+                }
+                case EXIT -> {
+                    System.exit( 0 );
+                    break;
+                }
+                default -> {
+                    break;
+                }
             }
-            case SHOW -> {
-                platform.showTitles();
-                break;
-            }
-            case SEARCH_BY_TITLE -> {
-                System.out.println("Busca por titulo");
-                break;
-            }
-            case REMOVE -> {
-                System.out.println("Elimina el contenido");
-                break;
-            }
-            case EXIT -> {
-                System.exit( 0 );
-                break;
-            }
-            default -> {
-                break;
-            }
-        }
-
-        // Capturamos los valores que deseamos asignar a la creación de la película
-//        String title = ScannerUtils.inputText( "Nombre película" );
-//        String genre = ScannerUtils.inputText( "Genero de la película" );
-//        int duration = ScannerUtils.inputInt( "Duración de la película" );
-//        double rating = ScannerUtils.inputDouble( "Calificación de la película" );
-
-        // Creamos una película
-//        Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
-//        movie.rating = 999;       // Esto se saltará la validación que hemos realizado, con el método rate(), pues estamos cambiando su valor directamente al atributo rating
-//        movie.setRating( 999 );     // Esta seria la forma de modificar un valor usando un Setter y no se saltará la validación que hemos realizado, con el método rate()
-
-        // Creamos una segunda película con valores predeterminados
-//        Movie f1 = new Movie( "F1: The movie", 120, "Action" );
-
-        // Agregar la película a la lista de plataforma
-//        platform.add( movie );
-//        platform.add( f1 );
-//
-//        System.out.println( platform );
-//        System.out.println("# películas en " + platform.getName() + " es de " + platform.getContent().size() + " películas");
-//        platform.showTitles();
-
-        // Eliminar la pelicula f1
-//        System.out.println( "Elimina F1");
-//        platform.delete( f1 );
-//        System.out.println("# películas en " + platform.getName() + " es de " + platform.getContent().size() + " películas");
-//        platform.showTitles();
-
-        // Agregamos valores a los atributos del objeto movie
-//        movie.title = ScannerUtils.inputText("Nombre película" );                   // "León: The Professional"
-//        movie.releaseDate = LocalDate.of(1994, 9, 14);
-//        movie.releaseLocation = ScannerUtils.inputText("Lugar de estreno");         // "Francia"
-//        movie.genre = ScannerUtils.inputText( "Genero de la película" );            // "Acción"
-//        movie.director = ScannerUtils.inputText( "Nombre del director" );           // "Luc Besson"
-//        movie.duration = ScannerUtils.inputInt( "Duración de la película" );        // 110, 1h 50m
-//        movie.rating = ScannerUtils.inputDouble( "Calificación de la película" );   // 4.5;
-
-        // Casting de datos
-//        long durationLong = movie.duration;                     // Casting implícito: Ambos son de tipo int, y permite el casting implícito, básicamente por que long es un tipo de dato mas grande que int
-//        int rating = (int) movie.rating;                        // Casting explícito: Convertir un tipo int grande a uno más pequeño, en este caso con la perdida de decimales
-//        long prizes = Long.parseLong( "25" );                // Casting explícito: Usando una clase, para convertir un String en un Long
-//        int number = (int) Double.parseDouble( "3.1415" );   // Casting explícito: Usando una clase, para convertir un String en un Double
-
-//        System.out.println(
-//                "Casting de tipos" +
-//                "\n >> durationLong: " + durationLong +
-//                "\n >> rating: " + rating +
-//                "\n >> prizes: " + prizes +
-//                "\n >> number: " + number
-//        );
-
-        // Creamos un usuario
-//        User user = new User( "Juan C", "jcarlosj.dev@gmail.com" );
-//        user.name = "Juan C";
-//        user.email = "jcarlosj.dev@gmail.com";
-//        user.password = "123456789";
-//        user.createdAt = LocalDateTime.now();
-
-        // Obtener información detallada del usuario
-//        System.out.println( user.getInfo() );
-
-        // Obtenemos información sobre la película que ve el usuario
-//        user.watch( movie );
-
-        // Obtener información de la ficha técnica de la película
-//        System.out.println( movie.getInfo() );
 
         }
+    }
+
+    private static void addMovies( Platform platform ) {
+        platform.add( new Movie( "The Odyssey", 150, "Fiction/Drama" ) );
+        platform.add( new Movie( "Avengers: Doomsday", 160, "Action/Superheroes" ) );
+        platform.add( new Movie( "Toy Story", 100, "Animation/Adventure" ) );
+        platform.add( new Movie( "Mickey 17", 219, "Fiction" ) );
+        platform.add( new Movie( "Sinners", 215, "Terror/Drama" ) );
+        platform.add( new Movie( "How to Train your Dragon", 125, "Fantasy/Adventure" ) );
+        platform.add( new Movie( "Inside Out 2", 136, "Animation/Comedy" ) );
+        platform.add( new Movie( "Gladiator 2", 228, "Action/Drama" ) );
+        platform.add( new Movie( "Deadpool & Wolverine", 208, "Action/Comedy" ) );
+        platform.add( new Movie( "Oppenheimer", 301, "Drama" ) );
     }
 }
