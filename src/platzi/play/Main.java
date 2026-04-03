@@ -15,8 +15,9 @@ public class Main {
     public static final int SHOW = 2;
     public static final int SEARCH_BY_TITLE = 3;
     public static final int SEARCH_BY_GENRE = 4;
-    public static final int REMOVE = 5;
-    public static final int EXIT = 6;
+    public static final int SHOW_POPULAR = 5;
+    public static final int REMOVE = 6;
+    public static final int EXIT = 7;
 
     public static void main(String[] args) {
         System.out.println( APP_NAME + " v" + VERSION );
@@ -38,8 +39,9 @@ public class Main {
                     2. Mostrar todo
                     3. Buscar por titulo
                     4. Buscar por genero
-                    5. Eliminar contenido
-                    6. Salir
+                    5. Mostrar populares
+                    6. Eliminar contenido
+                    7. Salir
                     Ingresa una de las opciones:
                     """);
             System.out.println("Opcion elegida: " + option);
@@ -47,6 +49,8 @@ public class Main {
             // Usando switch
             switch( option ) {
                 case ADD -> {
+                    System.out.println( "*** Agregar película ***" );
+
                     // Capturamos los valores que deseamos asignar a la creación de la película
                     String title = ScannerUtils.inputText( "Nombre película" );
                     String genre = ScannerUtils.inputText( "Genero de la película" );
@@ -64,10 +68,14 @@ public class Main {
                     platform.add( f1 );
                 }
                 case SHOW -> {
+                    System.out.println( "*** Listado de películas disponibles ***" );
+
                     List<String> titles = platform.getTitles();
                     titles.forEach( System.out::println );      // System.out::println equivale a title -> System.out.println( title )
                 }
                 case SEARCH_BY_TITLE -> {
+                    System.out.println( "*** Buscar película ***" );
+
                     String term = ScannerUtils.inputText( "Buscar por titulo: " );
                     Movie movie = platform.searchByTitle( term );
 
@@ -81,6 +89,8 @@ public class Main {
                     }
                 }
                 case SEARCH_BY_GENRE -> {
+                    System.out.println( "*** Buscar película ***" );
+
                     String term = ScannerUtils.inputText( "Buscar por genero: " );
 
                     System.out.println( "*** Resultados de búsqueda por genero ***" );
@@ -90,7 +100,14 @@ public class Main {
 
                     movies.forEach( movie -> System.out.println( movie.getInfo() + "\n" ));
                 }
+                case SHOW_POPULAR -> {
+                    System.out.println( "*** Listado de películas populares ***" );
+                    List<Movie> popularMovies = platform.getPopularMovies();
+                    popularMovies.forEach( movie -> System.out.println( movie.getInfo() + "\n" ) );
+                }
                 case REMOVE -> {
+                    System.out.println( "*** Eliminar película ***" );
+
                     String term = ScannerUtils.inputText( "Titulo a eliminar: " );
                     Movie title = platform.searchByTitle( term );
 
@@ -113,15 +130,15 @@ public class Main {
     }
 
     private static void addMovies( Platform platform ) {
-        platform.add( new Movie( "The Odyssey", 150, "Fiction" ) );
-        platform.add( new Movie( "Avengers: Doomsday", 160, "Action" ) );
-        platform.add( new Movie( "Toy Story", 100, "Animation" ) );
-        platform.add( new Movie( "Mickey 17", 219, "Fiction" ) );
-        platform.add( new Movie( "Sinners", 215, "Terror" ) );
-        platform.add( new Movie( "How to Train your Dragon", 125, "Fantasy" ) );
-        platform.add( new Movie( "Inside Out 2", 136, "Animation" ) );
-        platform.add( new Movie( "Gladiator 2", 228, "Action" ) );
-        platform.add( new Movie( "Deadpool & Wolverine", 208, "Action" ) );
-        platform.add( new Movie( "Oppenheimer", 301, "Drama" ) );
+        platform.add( new Movie( "The Odyssey", 150, "Fiction", 4.0 ) );
+        platform.add( new Movie( "Avengers: Doomsday", 160, "Action", 4.3 ) );
+        platform.add( new Movie( "Toy Story", 100, "Animation", 3.8 ) );
+        platform.add( new Movie( "Mickey 17", 219, "Fiction", 3.6 ) );
+        platform.add( new Movie( "Sinners", 215, "Terror", 3.0 ) );
+        platform.add( new Movie( "How to Train your Dragon", 125, "Fantasy", 4.0 ) );
+        platform.add( new Movie( "Inside Out 2", 136, "Animation", 4.25 ) );
+        platform.add( new Movie( "Gladiator 2", 228, "Action", 4.5 ) );
+        platform.add( new Movie( "Deadpool & Wolverine", 208, "Action", 4.7 ) );
+        platform.add( new Movie( "Oppenheimer", 301, "Drama", 4.72 ) );
     }
 }

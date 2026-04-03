@@ -3,6 +3,7 @@ package platzi.play.plataforma;
 import platzi.play.contenido.Movie;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Platform {
@@ -69,5 +70,11 @@ public class Platform {
         return content.stream()
                 .mapToInt( Movie::getDuration )     // Transforma un entero
                 .sum();                             // Suma todos los enteros
+    }
+
+    public List<Movie> getPopularMovies() {
+        return content.stream()
+                .sorted( Comparator.comparingDouble( Movie::getRating ).reversed() )
+                .toList();
     }
 }
