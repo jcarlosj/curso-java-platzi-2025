@@ -59,12 +59,10 @@ public class Main {
                     // Agregar la película a la lista de plataforma
                     platform.add( movie );
                     platform.add( f1 );
-
-                    break;
                 }
                 case SHOW -> {
-                    platform.showTitles();
-                    break;
+                    List<String> titles = platform.getTitles();
+                    titles.forEach( System.out::println );      // System.out::println equivale a title -> System.out.println( title )
                 }
                 case SEARCH_BY_TITLE -> {
                     String term = ScannerUtils.inputText( "Buscar por titulo: " );
@@ -78,8 +76,6 @@ public class Main {
                     else {
                         System.out.println( term + " no existe en " + APP_NAME );
                     }
-
-                    break;
                 }
                 case SEARCH_BY_GENRE -> {
                     String term = ScannerUtils.inputText( "Buscar por genero: " );
@@ -102,14 +98,10 @@ public class Main {
                     else {
                         System.out.println( term + " no existe en " + APP_NAME );
                     }
-
-                    break;
                 }
-                case EXIT -> {
-                    System.exit( 0 );
-                    break;
-                }
+                case EXIT -> System.exit( 0 );
                 default -> {
+                    System.out.println( "El valor seleccionado no se encuentra en el menu" );
                     break;
                 }
             }

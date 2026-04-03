@@ -19,16 +19,16 @@ public class Platform {
         content.add(movie);
     }
 
-    public void showTitles() {
+    public List<String> getTitles() {
         System.out.println( "Listado títulos" );
         /*for (int i = 0; i < content.size(); i++) {
             System.out.println( i + 1 +". " + content.get( i ).getTitle() );
         }*/
 
         // Programación Funcional
-        content.forEach( movie -> {
-            System.out.println( " - " + movie.getTitle() );
-        });
+        return content.stream()
+                .map( Movie::getTitle )     // Transforma: movie -> movie.getTitle() --> Lambda la reemplazamos por un método de referencia Movie::getTitle, internamente hace lo mismo que la lambda. El metodo de referencia es un metodo que podemos llamar directamente desde la clase.
+                .toList();
     }
 
     public void delete( Movie movie ) {
