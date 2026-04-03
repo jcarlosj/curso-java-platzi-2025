@@ -77,4 +77,11 @@ public class Platform {
                 .sorted( Comparator.comparingDouble( Movie::getRating ).reversed() )
                 .toList();
     }
+
+    public List<Movie> getPopularMovies( int quantity ) {
+        return content.stream()
+                .sorted( Comparator.comparingDouble( Movie::getRating ).reversed() )
+                .limit( quantity )
+                .toList();
+    }
 }

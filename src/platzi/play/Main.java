@@ -102,7 +102,9 @@ public class Main {
                 }
                 case SHOW_POPULAR -> {
                     System.out.println( "*** Listado de películas populares ***" );
-                    List<Movie> popularMovies = platform.getPopularMovies();
+                    int quantity = ScannerUtils.inputInt( "Cantidad de resultados a mostrar" );
+
+                    List<Movie> popularMovies = platform.getPopularMovies( quantity );
                     popularMovies.forEach( movie -> System.out.println( movie.getInfo() + "\n" ) );
                 }
                 case REMOVE -> {
