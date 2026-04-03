@@ -64,4 +64,10 @@ public class Platform {
                 .filter( movie -> movie.getGenre().equalsIgnoreCase( genre ) )      // Itera y aplica un filtro
                 .toList();                                                                 // Convierte los resultados del filtro como una lista
     }
+
+    public int getTotalDuration() {
+        return content.stream()
+                .mapToInt( Movie::getDuration )     // Transforma un entero
+                .sum();                             // Suma todos los enteros
+    }
 }

@@ -27,6 +27,9 @@ public class Main {
         // Cargar películas
         addMovies( platform );
 
+        // Información General
+        System.out.println( "Más de " + platform.getTotalDuration() + " minutos de contenido" );
+
         // Menu interactivo usando un while
         while( true ) {
             int option = ScannerUtils.inputInt("""
