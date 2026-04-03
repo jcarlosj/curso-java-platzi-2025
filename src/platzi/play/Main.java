@@ -16,8 +16,11 @@ public class Main {
     public static final int SEARCH_BY_TITLE = 3;
     public static final int SEARCH_BY_GENRE = 4;
     public static final int SHOW_POPULAR = 5;
-    public static final int REMOVE = 6;
-    public static final int EXIT = 7;
+    public static final int SHOW_SHORTER = 6;
+    public static final int SHOW_LONGER = 7;
+    public static final int SHOW_THE_BEST = 8;
+    public static final int REMOVE = 9;
+    public static final int EXIT = 10;
 
     public static void main(String[] args) {
         System.out.println( APP_NAME + " v" + VERSION );
@@ -39,9 +42,12 @@ public class Main {
                     2. Mostrar todo
                     3. Buscar por titulo
                     4. Buscar por genero
-                    5. Mostrar populares
-                    6. Eliminar contenido
-                    7. Salir
+                    5. Mostrar
+                    6. Mostrar menor duración
+                    7. Mostrar mayor duración
+                    8. Mostrar las mejores (+4.5)
+                    9. Eliminar contenido
+                    10. Salir
                     Ingresa una de las opciones:
                     """);
             System.out.println("Opcion elegida: " + option);
@@ -106,6 +112,23 @@ public class Main {
 
                     List<Movie> popularMovies = platform.getPopularMovies( quantity );
                     popularMovies.forEach( movie -> System.out.println( movie.getInfo() + "\n" ) );
+                }
+                case SHOW_SHORTER -> {
+                    System.out.println( "*** La película mas corta ***" );
+                    Movie shorterMovie = platform.getShorterMovie();
+                    System.out.println( shorterMovie.getInfo() );
+                }
+                case SHOW_LONGER -> {
+                    System.out.println( "*** La película mas larga ***" );
+                    Movie longerMovie = platform.getLongerMovie();
+                    System.out.println( longerMovie.getInfo() );
+                }
+                case SHOW_THE_BEST -> {
+                    System.out.println( "*** Las mejores películas (+4.5) ");
+                    List<Movie> theBestMovies = platform.getTheBestMovies();
+
+                    System.out.println( "Son " + theBestMovies.size() + " con mas de 4.5 en " + APP_NAME );
+                    theBestMovies.forEach( movie -> System.out.println( movie.getInfo() + "\n" ) );
                 }
                 case REMOVE -> {
                     System.out.println( "*** Eliminar película ***" );

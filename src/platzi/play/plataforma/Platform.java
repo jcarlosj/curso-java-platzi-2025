@@ -84,4 +84,22 @@ public class Platform {
                 .limit( quantity )
                 .toList();
     }
+
+    public Movie  getLongerMovie() {
+        return content.stream()
+                .max( Comparator.comparingDouble( Movie::getDuration ) )
+                .orElse( null );
+    }
+
+    public Movie getShorterMovie() {
+        return content.stream()
+                .min( Comparator.comparingDouble( Movie::getDuration ) )
+                .orElse( null );
+    }
+
+    public List<Movie> getTheBestMovies() {
+        return content.stream()
+                .filter( movie -> movie.getRating() >= 4.5 )
+                .toList();
+    }
 }
