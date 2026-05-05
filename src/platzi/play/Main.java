@@ -1,5 +1,6 @@
 package platzi.play;
 
+import platzi.play.contenido.Genre;
 import platzi.play.contenido.Movie;
 import platzi.play.plataforma.Platform;
 import platzi.play.utils.ScannerUtils;
@@ -59,7 +60,7 @@ public class Main {
 
                     // Capturamos los valores que deseamos asignar a la creación de la película
                     String title = ScannerUtils.inputText( "Nombre película" );
-                    String genre = ScannerUtils.inputText( "Genero de la película" );
+                    Genre genre = ScannerUtils.inputGenre( "Genero de la película" );
                     int duration = ScannerUtils.inputInt( "Duración de la película" );
                     double rating = ScannerUtils.inputDouble( "Calificación de la película" );
 
@@ -67,7 +68,7 @@ public class Main {
                     Movie movie = new Movie( title, duration, genre, rating );      // Instanciar un objeto a partir de una clase
 
                     // Creamos una segunda película con valores predeterminados
-                    Movie f1 = new Movie( "F1: The movie", 120, "Action" );
+                    Movie f1 = new Movie( "F1: The movie", 120, Genre.ACTION );
 
                     // Agregar la película a la lista de plataforma
                     platform.add( movie );
@@ -97,11 +98,11 @@ public class Main {
                 case SEARCH_BY_GENRE -> {
                     System.out.println( "*** Buscar película ***" );
 
-                    String term = ScannerUtils.inputText( "Buscar por genero: " );
+                    Genre genre = ScannerUtils.inputGenre( "Genero de la película que desea buscar" );
 
                     System.out.println( "*** Resultados de búsqueda por genero ***" );
 
-                    List<Movie> movies = platform.searchByGenre( term );
+                    List<Movie> movies = platform.searchByGenre( genre );
                     System.out.println( "Se han encontrado " + movies.size() + " en " + APP_NAME );
 
                     movies.forEach( movie -> System.out.println( movie.getInfo() + "\n" ));
@@ -155,15 +156,15 @@ public class Main {
     }
 
     private static void addMovies( Platform platform ) {
-        platform.add( new Movie( "The Odyssey", 150, "Fiction", 4.0 ) );
-        platform.add( new Movie( "Avengers: Doomsday", 160, "Action", 4.3 ) );
-        platform.add( new Movie( "Toy Story", 100, "Animation", 3.8 ) );
-        platform.add( new Movie( "Mickey 17", 219, "Fiction", 3.6 ) );
-        platform.add( new Movie( "Sinners", 215, "Terror", 3.0 ) );
-        platform.add( new Movie( "How to Train your Dragon", 125, "Fantasy", 4.0 ) );
-        platform.add( new Movie( "Inside Out 2", 136, "Animation", 4.25 ) );
-        platform.add( new Movie( "Gladiator 2", 228, "Action", 4.5 ) );
-        platform.add( new Movie( "Deadpool & Wolverine", 208, "Action", 4.7 ) );
-        platform.add( new Movie( "Oppenheimer", 301, "Drama", 4.72 ) );
+        platform.add( new Movie( "The Odyssey", 150, Genre.FICTION, 4.0 ) );
+        platform.add( new Movie( "Avengers: Doomsday", 160, Genre.ACTION, 4.3 ) );
+        platform.add( new Movie( "Toy Story", 100, Genre.ANIMATED, 3.8 ) );
+        platform.add( new Movie( "Mickey 17", 219, Genre.FICTION, 3.6 ) );
+        platform.add( new Movie( "Sinners", 215, Genre.HORROR, 3.0 ) );
+        platform.add( new Movie( "How to Train your Dragon", 125, Genre.FANTASY, 4.0 ) );
+        platform.add( new Movie( "Inside Out 2", 136, Genre.ANIMATED, 4.25 ) );
+        platform.add( new Movie( "Gladiator 2", 228, Genre.ACTION, 4.5 ) );
+        platform.add( new Movie( "Deadpool & Wolverine", 208, Genre.ACTION, 4.7 ) );
+        platform.add( new Movie( "Oppenheimer", 301, Genre.DRAMA, 4.72 ) );
     }
 }

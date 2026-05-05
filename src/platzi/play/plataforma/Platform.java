@@ -1,5 +1,6 @@
 package platzi.play.plataforma;
 
+import platzi.play.contenido.Genre;
 import platzi.play.contenido.Movie;
 
 import java.util.ArrayList;
@@ -60,9 +61,9 @@ public class Platform {
         // return null;
     }
 
-    public List<Movie> searchByGenre( String genre ) {
+    public List<Movie> searchByGenre( Genre genre ) {
         return content.stream()                                                           // Crea el Stream a partir de un List
-                .filter( movie -> movie.getGenre().equalsIgnoreCase( genre ) )      // Itera y aplica un filtro
+                .filter( movie -> movie.getGenre().equals( genre ) )                // Itera y aplica un filtro
                 .toList();                                                                 // Convierte los resultados del filtro como una lista
     }
 

@@ -1,8 +1,6 @@
 package platzi.play.contenido;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 public class Movie {
     // Atributos
@@ -11,7 +9,7 @@ public class Movie {
     private LocalDate releaseDate;
     private String releaseLocation;
     private String director;
-    private String genre;
+    private Genre genre;
     private int duration;
     private double rating;
     private boolean isAvailable;
@@ -20,7 +18,7 @@ public class Movie {
     public Movie (
             String title,
             int duration,
-            String genre
+            Genre genre
     ) {
         this.title = title;
         this.genre = genre;
@@ -32,7 +30,7 @@ public class Movie {
     public Movie(
             String title,
             int duration,
-            String genre,
+            Genre genre,
             double rating
     ) {
         this( title, duration, genre ); // Invocar el constructor que espere esos parámetros, en su respectivo orden y tipo
@@ -87,7 +85,7 @@ public class Movie {
         return director;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
@@ -124,7 +122,7 @@ public class Movie {
         this.director = director;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 

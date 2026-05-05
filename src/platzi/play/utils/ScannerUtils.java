@@ -1,5 +1,7 @@
 package platzi.play.utils;
 
+import platzi.play.contenido.Genre;
+
 import java.util.Scanner;
 
 public class ScannerUtils {
@@ -40,5 +42,25 @@ public class ScannerUtils {
         SCANNER.nextLine();
 
         return value;
+    }
+    //
+    public static Genre inputGenre(String label ) {
+        while( true ) {
+            System.out.println( label + ", opciones: ");
+
+            for( Genre genre : Genre.values() ) {
+                System.out.println( " - " + genre.name() );
+            }
+
+            System.out.println( "¿Cuál deseas? " );
+            String input = SCANNER.nextLine();
+
+            try {
+                // .valueOf: Convierte un String en un tipo Genre
+                return Genre.valueOf(input.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println( "Genero " + input + " desconocido. Intente de nuevo. " );
+            }
+        }
     }
 }
